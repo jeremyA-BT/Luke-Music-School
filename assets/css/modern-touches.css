@@ -1,0 +1,168 @@
+/* Modern architectural design touches for Bebas Neue aesthetic */
+
+/* Strong geometric elements */
+.bio-text::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: -40px;
+    width: 30px;
+    height: 3px;
+    background: var(--color-primary);
+    opacity: 0.8;
+}
+
+.lesson-card-artistic::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 15px;
+    height: 15px;
+    background: var(--color-warm-orange);
+    opacity: 0.6;
+    clip-path: polygon(0 0, 100% 0, 100% 100%);
+}
+
+/* Strong architectural lines */
+.section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 20%;
+    right: 20%;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        var(--color-primary), 
+        var(--color-warm-copper), 
+        transparent
+    );
+    opacity: 0.7;
+}
+
+/* Bold form styling */
+.form-group label {
+    position: relative;
+    font-family: 'Bebas Neue', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.85rem;
+}
+
+.form-group label::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: var(--color-primary);
+    opacity: 0.7;
+}
+
+/* Strong button effects */
+.trial-cta, .submit-btn {
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+}
+
+.trial-cta::before, .submit-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.trial-cta:hover::before, .submit-btn:hover::before {
+    left: 100%;
+}
+
+/* Modern navigation styling */
+.main-nav a {
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+}
+
+.main-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: var(--color-primary);
+    transition: width 0.3s ease;
+}
+
+.main-nav a:hover::after {
+    width: 100%;
+}
+
+/* Strong geometric accent on artist name */
+.artist-name::before {
+    transform: translateX(-50%) skew(-20deg);
+}
+
+.artist-name h1::after {
+    transform: translateX(-50%) skew(-10deg);
+}
+
+/* Modern card styling */
+.lesson-card-artistic {
+    position: relative;
+}
+
+.lesson-card-artistic::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-warm-orange), var(--color-warm-copper));
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
+
+.lesson-card-artistic:hover::after {
+    transform: scaleX(1);
+}
+
+/* Architectural typography effects */
+.section-title-artistic {
+    position: relative;
+}
+
+.section-title-artistic::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -30px;
+    width: 20px;
+    height: 2px;
+    background: var(--color-primary);
+    transform: translateY(-50%);
+}
+
+.section-title-artistic::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -30px;
+    width: 20px;
+    height: 2px;
+    background: var(--color-primary);
+    transform: translateY(-50%);
+}

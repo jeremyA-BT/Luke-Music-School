@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Luke Higgins</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/modern-touches.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Bebas+Neue&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="contact-page">
+    <header class="page-header">
+        <nav class="main-nav">
+            <a href="index.html" class="home-link">Luke Higgins</a>
+            <button class="mobile-nav-toggle" aria-label="Toggle navigation">☰</button>
+            <div class="nav-links">
+                <a href="bio.html">BIO</a>
+                <a href="lessons.html">LESSONS</a>
+                <a href="contact.html" class="active">CONTACT</a>
+                <button class="theme-toggle">
+                    <span class="theme-toggle-icon">𝅜</span>
+                    <span class="theme-toggle-text">Light</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="page-main">
+        <div class="page-container">
+            <section class="contact-section">
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h1>Get In Touch</h1>
+                        <p class="contact-intro">Ready to start your musical journey? Have questions about lessons? I'd love to hear from you.</p>
+                        
+                        <div class="contact-methods">
+                            <div class="contact-method">
+                                <div class="method-icon">📧</div>
+                                <div class="method-info">
+                                    <h3>Email</h3>
+                                    <p>hello@lukehiggins.com</p>
+                                </div>
+                            </div>
+                            <div class="contact-method">
+                                <div class="method-icon">📱</div>
+                                <div class="method-info">
+                                    <h3>Phone</h3>
+                                    <p>(555) 123-4567</p>
+                                </div>
+                            </div>
+                            <div class="contact-method">
+                                <div class="method-icon">📍</div>
+                                <div class="method-info">
+                                    <h3>Location</h3>
+                                    <p>Available for lessons and performances</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form">
+                        <h2>Send a Message</h2>
+                        <form class="message-form">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone">Phone (optional)</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="instrument">Interested In</label>
+                                <select id="instrument" name="instrument">
+                                    <option value="">Select an option</option>
+                                    <option value="piano">Piano Lessons</option>
+                                    <option value="guitar">Guitar Lessons</option>
+                                    <option value="drums">Drum Lessons</option>
+                                    <option value="vocals">Vocal Lessons</option>
+                                    <option value="performance">Performance Booking</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" rows="6" placeholder="Tell me about your musical goals, experience level, or any questions you have..."></textarea>
+                            </div>
+                            
+                            <button type="submit" class="submit-btn">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="page-footer">
+        <p>&copy; 2024 Luke Higgins</p>
+        <p class="dev-credit">Developed by Adamstribe</p>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/mobile-nav.js"></script>
+</body>
+</html>
