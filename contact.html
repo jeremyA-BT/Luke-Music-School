@@ -6,19 +6,20 @@
     <title>Contact - Luke Higgins</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/modern-touches.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Bebas+Neue&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Raleway:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="contact-page">
     <header class="page-header">
         <nav class="main-nav">
             <a href="index.html" class="home-link">Luke Higgins</a>
-            <button class="mobile-nav-toggle" aria-label="Toggle navigation">☰</button>
+            <button class="mobile-nav-toggle" aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>
             <div class="nav-links">
                 <a href="bio.html">BIO</a>
                 <a href="lessons.html">LESSONS</a>
                 <a href="contact.html" class="active">CONTACT</a>
                 <button class="theme-toggle">
-                    <span class="theme-toggle-icon">𝅜</span>
+                    <span class="theme-toggle-icon"><i class="fas fa-sun"></i></span>
                     <span class="theme-toggle-text">Light</span>
                 </button>
             </div>
@@ -31,25 +32,30 @@
                 <div class="contact-content">
                     <div class="contact-info">
                         <h1>Get In Touch</h1>
-                        <p class="contact-intro">Ready to start your musical journey? Have questions about lessons? I'd love to hear from you.</p>
+                        <p class="contact-intro">
+                            Ready to start your musical journey?
+                            <br/> 
+                            Have questions about lessons or pricing?
+                            <br/> 
+                            I'd love to hear from you.</p>
                         
                         <div class="contact-methods">
                             <div class="contact-method">
-                                <div class="method-icon">📧</div>
+                                <div class="method-icon"><i class="fas fa-envelope"></i></div>
                                 <div class="method-info">
                                     <h3>Email</h3>
-                                    <p>hello@lukehiggins.com</p>
+                                    <p><a href="mailto:lukesterhi@gmail.com" class="email-link">lukesterhi@gmail.com</a></p>
                                 </div>
                             </div>
                             <div class="contact-method">
-                                <div class="method-icon">📱</div>
+                                <div class="method-icon"><i class="fab fa-whatsapp"></i></div>
                                 <div class="method-info">
-                                    <h3>Phone</h3>
-                                    <p>(555) 123-4567</p>
+                                    <h3>WhatsApp</h3>
+                                    <p><a href="https://wa.me/27766707711" target="_blank" class="whatsapp-link">+27 76 670 7711</a></p>
                                 </div>
                             </div>
                             <div class="contact-method">
-                                <div class="method-icon">📍</div>
+                                <div class="method-icon"><i class="fas fa-map-marker-alt"></i></div>
                                 <div class="method-info">
                                     <h3>Location</h3>
                                     <p>Available for lessons and performances</p>
@@ -91,7 +97,7 @@
                             
                             <div class="form-group">
                                 <label for="message">Message</label>
-                                <textarea id="message" name="message" rows="6" placeholder="Tell me about your musical goals, experience level, or any questions you have..."></textarea>
+                                <textarea id="message" name="message" rows="6" placeholder="Tell me about your musical goals, experience level, pricing questions, or any other inquiries..."></textarea>
                             </div>
                             
                             <button type="submit" class="submit-btn">Send Message</button>

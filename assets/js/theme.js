@@ -42,10 +42,10 @@ class ThemeManager {
             const text = button.querySelector('.theme-toggle-text');
             
             if (currentTheme === 'light') {
-                if (icon) icon.textContent = '♪';
+                if (icon) icon.innerHTML = '<i class="fas fa-moon"></i>';
                 if (text) text.textContent = 'Dark';
             } else {
-                if (icon) icon.textContent = '♫';
+                if (icon) icon.innerHTML = '<i class="fas fa-sun"></i>';
                 if (text) text.textContent = 'Light';
             }
         });

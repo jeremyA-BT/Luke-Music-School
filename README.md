@@ -28,7 +28,7 @@ const SITE_CONFIG = {
 
 ### Always Visible
 - **Bio** - About Luke, instruments, teaching info
-- **Lessons** - Course types and pricing
+- **Lessons** - Course types and information
 - **Contact** - Email, phone, contact form
 
 ### Optional Sections (toggleable)

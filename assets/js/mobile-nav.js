@@ -89,7 +89,7 @@ class MobileNavigation {
 
     updateToggleIcon(toggle, isOpen) {
         if (toggle) {
-            toggle.textContent = isOpen ? '✕' : '☰';
+            toggle.innerHTML = isOpen ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
             toggle.setAttribute('aria-expanded', isOpen.toString());
         }
     }

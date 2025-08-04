@@ -151,7 +151,7 @@ function addPlaceholderInteractions() {
             const icon = placeholder.querySelector('.audio-icon');
             if (icon) {
                 isPlaying = !isPlaying;
-                icon.textContent = isPlaying ? '⏸' : '♪';
+                icon.innerHTML = isPlaying ? '<i class="fas fa-pause"></i>' : '<i class="fas fa-play"></i>';
                 placeholder.style.background = isPlaying ? 'var(--color-warm-orange)' : '';
                 placeholder.style.color = isPlaying ? 'white' : '';
             }
@@ -165,7 +165,7 @@ function addPlaceholderInteractions() {
             const icon = placeholder.querySelector('.play-icon');
             if (icon) {
                 isPlaying = !isPlaying;
-                icon.textContent = isPlaying ? '⏸' : '▶';
+                icon.innerHTML = isPlaying ? '<i class="fas fa-pause"></i>' : '<i class="fas fa-play"></i>';
                 placeholder.style.background = isPlaying ? 'var(--color-warm-pink)' : '';
                 placeholder.style.color = isPlaying ? 'white' : '';
             }

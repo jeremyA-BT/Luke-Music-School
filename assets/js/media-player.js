@@ -312,7 +312,7 @@ class MediaPlayer {
             const playBtn = this.currentPlayer.querySelector('.play-btn');
             const visualizer = this.currentPlayer.querySelector('.visualizer');
             
-            playBtn.textContent = '▶';
+            playBtn.innerHTML = '<i class="fas fa-play"></i>';
             
             // Pause real audio
             if (this.currentAudio) {
@@ -410,7 +410,7 @@ class MediaPlayer {
                     this.hideAudioLoading(audioPlayer, playBtn);
                     audioPlayer.classList.add('playing');
                 }
-                playBtn.textContent = '⏸';
+                playBtn.innerHTML = '<i class="fas fa-pause"></i>';
             }
             
         } catch (error) {
@@ -438,7 +438,7 @@ class MediaPlayer {
         // Create a simple demo audio context with oscillator
         this.createDemoAudioWithVisualizer(canvas);
         
-        playBtn.textContent = '⏸';
+        playBtn.innerHTML = '<i class="fas fa-pause"></i>';
         if (audioPlayer) {
             audioPlayer.classList.add('playing');
         }
@@ -684,7 +684,7 @@ class MediaPlayer {
             const timeDisplay = this.currentPlayer.querySelector('.time-display');
             const visualizer = this.currentPlayer.querySelector('.visualizer');
             
-            if (playBtn) playBtn.textContent = '▶';
+            if (playBtn) playBtn.innerHTML = '<i class="fas fa-play"></i>';
             if (progressBar) progressBar.style.width = '0%';
             if (timeDisplay) timeDisplay.textContent = '0:00 / 0:00';
             
@@ -703,7 +703,7 @@ class MediaPlayer {
             const visualizer = player.querySelector('.visualizer');
             
             player.classList.remove('playing');
-            if (playBtn) playBtn.textContent = '▶';
+            if (playBtn) playBtn.innerHTML = '<i class="fas fa-play"></i>';
             if (progressBar) progressBar.style.width = '0%';
             if (timeDisplay) timeDisplay.textContent = '0:00 / 0:00';
             if (visualizer) visualizer.classList.remove('active');
@@ -749,7 +749,7 @@ class MediaPlayer {
             // Reset button to play state if it's not currently playing
             const parentPlayer = btn.closest('.audio-player');
             if (parentPlayer && !parentPlayer.classList.contains('playing')) {
-                btn.textContent = '▶';
+                btn.innerHTML = '<i class="fas fa-play"></i>';
             }
         });
     }

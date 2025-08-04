@@ -47,7 +47,8 @@
     --gradient-warm: linear-gradient(135deg, #ff7f39 0%, #3498db 50%, #5d6d7e 100%);
     --gradient-teaching: linear-gradient(135deg, #ff7f39 0%, #d2941a 100%);
 
-    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-family: 'Raleway', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-display: 'Cinzel', serif;
     --spacing-xs: 0.5rem;
     --spacing-sm: 1rem;
     --spacing-md: 2rem;
@@ -176,6 +177,14 @@ body {
 .theme-toggle-icon {
     font-size: 1rem;
     filter: drop-shadow(0 0 3px rgba(212, 175, 55, 0.3));
+}
+
+.theme-toggle-icon i {
+    transition: transform 0.3s ease;
+}
+
+.theme-toggle:hover .theme-toggle-icon i {
+    transform: scale(1.1);
 }
 
 .landing-page .main-nav a {
@@ -417,16 +426,16 @@ body {
     }
 
 .artist-name h1 {
+    font-family: var(--font-display);
     font-size: 4.5rem;
-    font-weight: 400;
-    letter-spacing: 0.1em;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
     margin-bottom: var(--spacing-md);
     color: var(--color-white);
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
     line-height: 0.9;
     position: relative;
-    font-family: 'Bebas Neue', sans-serif;
-    text-transform: uppercase;
 }
 
     .artist-name h1::after {
@@ -442,14 +451,14 @@ body {
     }
 
 .tagline {
+    font-family: var(--font-family);
     font-size: 1.2rem;
-    color: rgba(255, 255, 255, 0.9);
-    font-weight: 300;
+    font-weight: 400;
+    letter-spacing: 0.3em;
     text-transform: uppercase;
-    letter-spacing: 0.4em;
+    color: rgba(255, 255, 255, 0.9);
     text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
     margin-top: var(--spacing-md);
-    font-family: 'Raleway', sans-serif;
 }
 
 
@@ -500,10 +509,10 @@ body {
 
 .home-link {
     font-size: 1.2rem !important;
-    font-weight: 400 !important;
+    font-weight: 500 !important;
     text-transform: uppercase !important;
     letter-spacing: 0.1em !important;
-    font-family: 'Bebas Neue', sans-serif !important;
+    font-family: var(--font-display) !important;
     color: var(--theme-text-primary) !important;
 }
 
@@ -579,13 +588,13 @@ body {
 }
 
 .bio-text h1 {
+    font-family: var(--font-display);
     font-size: 3rem;
-    font-weight: 400;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
     margin-bottom: var(--spacing-lg);
     color: var(--theme-text-primary);
-    font-family: 'Bebas Neue', sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
 }
 
 .bio-intro {
@@ -667,14 +676,14 @@ body {
 }
 
 .gallery-section h2 {
+    font-family: var(--font-display);
     font-size: 2rem;
-    font-weight: 400;
-    margin-bottom: var(--spacing-lg);
-    text-align: center;
-    font-family: 'Bebas Neue', sans-serif;
-    color: var(--theme-text-primary);
+    font-weight: 500;
+    letter-spacing: 0.02em;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+    color: var(--theme-text-primary);
 }
 
 .gallery-grid {
@@ -745,7 +754,7 @@ body {
     font-weight: 400;
     margin-bottom: var(--spacing-lg);
     text-align: center;
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: var(--font-display);
     color: var(--theme-text-primary);
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -1388,14 +1397,14 @@ body {
 }
 
 .lessons-hero .hero-content h1 {
+    font-family: var(--font-display);
     font-size: 3.5rem;
-    font-weight: 400;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
     margin-bottom: var(--spacing-md);
     color: white;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    font-family: 'Bebas Neue', sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
 }
 
 .lessons-hero .hero-subtitle {
@@ -1509,11 +1518,14 @@ body {
 .lesson-icon {
     font-size: 3rem;
     margin-bottom: var(--spacing-md);
+    color: var(--color-primary);
 }
 
 .lesson-card h3 {
+    font-family: var(--font-display);
     font-size: 1.5rem;
-    font-weight: 400;
+    font-weight: 500;
+    letter-spacing: 0.01em;
     margin-bottom: var(--spacing-sm);
     color: var(--theme-text-primary);
 }
@@ -1531,15 +1543,92 @@ body {
     margin-top: var(--spacing-md);
 }
 
-.price {
-    font-size: 1.3rem;
-    font-weight: 600;
+.contact-for-pricing {
+    font-size: 0.9rem;
+    font-weight: 500;
     color: var(--color-primary);
+    font-style: italic;
+    text-align: center;
 }
 
 .duration {
     color: var(--theme-text-secondary);
     font-size: 0.9rem;
+}
+
+/* Pricing Information Section */
+.pricing-info-section {
+    background: var(--theme-bg-secondary);
+    padding: var(--spacing-2xl);
+    margin-bottom: var(--spacing-3xl);
+    border: 1px solid var(--theme-border);
+    text-align: center;
+}
+
+.pricing-info-content h2 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--theme-text-primary);
+    margin-bottom: var(--spacing-lg);
+}
+
+.pricing-info-content p {
+    font-size: 1.1rem;
+    color: var(--theme-text-secondary);
+    margin-bottom: var(--spacing-lg);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contact-pricing-cta p {
+    font-weight: 500;
+    color: var(--theme-text-primary);
+    margin-bottom: var(--spacing-md);
+}
+
+.quick-contact {
+    display: flex;
+    gap: var(--spacing-lg);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: var(--color-primary);
+    color: var(--color-white);
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.contact-btn:hover {
+    background: var(--color-secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.whatsapp-btn:hover {
+    background: #25D366;
+}
+
+.method-icon .fab.fa-whatsapp {
+    color: #25D366;
+}
+
+.method-icon .fas.fa-envelope {
+    color: var(--color-primary);
+}
+
+.method-icon .fas.fa-map-marker-alt {
+    color: var(--color-secondary);
 }
 
 /* Teaching Philosophy with Colorful Background */
@@ -1573,7 +1662,7 @@ body {
     font-size: 2.5rem;
     font-weight: 400;
     margin-bottom: var(--spacing-lg);
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: var(--font-display);
     text-transform: uppercase;
     letter-spacing: 0.1em;
 }
@@ -1630,7 +1719,7 @@ body {
     font-weight: 400;
     margin-bottom: var(--spacing-md);
     color: var(--theme-text-primary);
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: var(--font-display);
     text-transform: uppercase;
     letter-spacing: 0.1em;
 }
@@ -1649,11 +1738,7 @@ body {
     margin-bottom: var(--spacing-xl);
 }
 
-.trial-price {
-    font-size: 3rem;
-    font-weight: 700;
-    color: var(--color-warm-orange);
-}
+/* Removed trial pricing styles - now using contact-for-pricing class */
 
 .trial-duration {
     font-size: 1.2rem;
@@ -1680,12 +1765,14 @@ body {
 
 /* Testimonials with Color Accents */
 .testimonials h2 {
+    font-family: var(--font-display);
     font-size: 2rem;
-    font-weight: 400;
+    font-weight: 500;
+    letter-spacing: 0.01em;
     text-align: center;
     margin-bottom: var(--spacing-xl);
     color: var(--theme-text-primary);
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: var(--font-display);
     text-transform: uppercase;
     letter-spacing: 0.1em;
 }
@@ -1739,8 +1826,10 @@ body {
 }
 
 .testimonial cite {
-    color: var(--color-primary);
+    font-family: var(--font-display);
     font-weight: 500;
+    letter-spacing: 0.01em;
+    color: var(--color-primary);
     font-style: normal;
 }
 
@@ -1760,7 +1849,7 @@ body {
     font-weight: 400;
     margin-bottom: var(--spacing-lg);
     color: var(--theme-text-primary);
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: var(--font-display);
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
@@ -1788,6 +1877,7 @@ body {
     font-size: 2rem;
     width: 60px;
     text-align: center;
+    color: var(--color-primary);
 }
 
 .method-info h3 {
@@ -1801,13 +1891,26 @@ body {
     color: var(--theme-text-secondary);
 }
 
+.email-link,
+.whatsapp-link {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.email-link:hover,
+.whatsapp-link:hover {
+    color: var(--color-secondary);
+    text-decoration: underline;
+}
+
 /* Contact Form */
 .contact-form h2 {
     font-size: 2rem;
     font-weight: 400;
     margin-bottom: var(--spacing-lg);
     color: var(--theme-text-primary);
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: var(--font-display);
     text-transform: uppercase;
     letter-spacing: 0.1em;
 }
@@ -1977,7 +2080,15 @@ body {
     cursor: pointer;
     padding: 8px;
     border-radius: 4px;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.mobile-nav-toggle i {
+    transition: transform 0.3s ease;
+}
+
+.mobile-nav-toggle:hover i {
+    transform: scale(1.1);
 }
 
 .mobile-nav-toggle:hover {
