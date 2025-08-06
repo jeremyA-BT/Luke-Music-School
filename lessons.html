@@ -12,7 +12,10 @@
 <body class="lessons-page">
     <header class="page-header">
         <nav class="main-nav">
-            <a href="index.html" class="home-link">Luke Higgins</a>
+            <div class="site-title-area">
+                <a href="index.html" class="home-link">Luke Higgins</a>
+                <p class="nav-subtitle">Musician & Educator</p>
+            </div>
             <button class="mobile-nav-toggle" aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>
             <div class="nav-links">
                 <a href="bio.html">BIO</a>
@@ -55,7 +58,7 @@
                         <p>Classical and contemporary styles for all skill levels</p>
                         <div class="lesson-details">
                             <span class="contact-for-pricing">Contact for pricing</span>
-                            <span class="duration">60 minutes</span>
+                            <span class="duration">30-60 minutes</span>
                         </div>
                     </div>
 
@@ -66,7 +69,7 @@
                         <p>Acoustic and electric guitar techniques</p>
                         <div class="lesson-details">
                             <span class="contact-for-pricing">Contact for pricing</span>
-                            <span class="duration">60 minutes</span>
+                            <span class="duration">30-60 minutes</span>
                         </div>
                     </div>
 
@@ -77,7 +80,7 @@
                         <p>From fundamentals to advanced techniques</p>
                         <div class="lesson-details">
                             <span class="contact-for-pricing">Contact for pricing</span>
-                            <span class="duration">60 minutes</span>
+                            <span class="duration">30-60 minutes</span>
                         </div>
                     </div>
 
@@ -88,7 +91,53 @@
                         <p>Technique, performance, and confidence building</p>
                         <div class="lesson-details">
                             <span class="contact-for-pricing">Contact for pricing</span>
-                            <span class="duration">60 minutes</span>
+                            <span class="duration">30-60 minutes</span>
+                        </div>
+                    </div>
+
+                    <div class="lesson-card bass-card">
+                        <div class="card-color-accent"></div>
+                        <div class="lesson-icon"><i class="fas fa-guitar"></i></div>
+                        <h3>Bass</h3>
+                        <p>Electric and acoustic bass fundamentals</p>
+                        <div class="lesson-details">
+                            <span class="contact-for-pricing">Contact for pricing</span>
+                            <span class="duration">30-60 minutes</span>
+                        </div>
+                    </div>
+
+                    <div class="lesson-card ukulele-card">
+                        <div class="card-color-accent"></div>
+                        <div class="lesson-icon"><i class="fas fa-music"></i></div>
+                        <h3>Ukulele</h3>
+                        <p>Fun and accessible string instrument for all ages</p>
+                        <div class="lesson-details">
+                            <span class="contact-for-pricing">Contact for pricing</span>
+                            <span class="duration">30-60 minutes</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Lesson Formats -->
+            <section class="lesson-formats">
+                <div class="formats-content">
+                    <h2>Lesson Formats</h2>
+                    <div class="format-options">
+                        <div class="format-option">
+                            <div class="format-icon"><i class="fas fa-home"></i></div>
+                            <h3>Home Studio</h3>
+                            <p>Professional setup with quality instruments and equipment</p>
+                        </div>
+                        <div class="format-option">
+                            <div class="format-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <h3>In-Home Lessons</h3>
+                            <p>Convenient instruction in the comfort of your own space</p>
+                        </div>
+                        <div class="format-option">
+                            <div class="format-icon"><i class="fas fa-laptop"></i></div>
+                            <h3>Online Lessons</h3>
+                            <p>Flexible learning from anywhere with video conferencing</p>
                         </div>
                     </div>
                 </div>
@@ -147,9 +196,9 @@
             <section class="trial-section">
                 <div class="trial-content">
                     <h2>Try a Lesson</h2>
-                    <p>Not sure if music lessons are right for you? Start with a trial lesson!</p>
+                    <p>Not sure if music lessons are right for you? Start with a free trial lesson!</p>
                     <div class="trial-offer">
-                        <span class="contact-for-pricing">Contact for trial pricing</span>
+                        <span class="contact-for-pricing">Free trial lesson</span>
                         <span class="trial-duration">30 minutes</span>
                     </div>
                     <a href="contact.html" class="trial-cta">Book Your Trial Lesson</a>
@@ -181,7 +230,7 @@
     </main>
 
     <footer class="page-footer">
-        <p>&copy; 2024 Luke Higgins</p>
+        <p>&copy; <span id="current-year">2024</span> Luke Higgins</p>
         <p class="dev-credit">Developed by Adamstribe</p>
     </footer>
 

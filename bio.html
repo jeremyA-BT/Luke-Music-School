@@ -12,7 +12,10 @@
 <body class="bio-page">
     <header class="page-header">
         <nav class="main-nav">
-            <a href="index.html" class="home-link">Luke Higgins</a>
+            <div class="site-title-area">
+                <a href="index.html" class="home-link">Luke Higgins</a>
+                <p class="nav-subtitle">Musician & Educator</p>
+            </div>
             <button class="mobile-nav-toggle" aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>
             <div class="nav-links">
                 <a href="bio.html" class="active">BIO</a>
@@ -32,7 +35,7 @@
                 <div class="bio-content">
                     <div class="bio-text">
                         <h1>About Luke</h1>
-                        <p class="bio-intro">Professional musician and dedicated educator specializing in piano, guitar, drums, and vocals.</p>
+                        <p class="bio-intro">Professional musician and dedicated educator specializing in piano, guitar, drums, vocals, bass, and ukulele.</p>
                         
                         <div class="bio-story">
                             <p>With years of experience in both performance and education, Luke brings a unique blend of technical expertise and passionate teaching to every lesson. His approach combines classical foundations with contemporary techniques, ensuring students develop both skill and artistic expression.</p>
@@ -43,15 +46,50 @@
                         <div class="bio-highlights">
                             <div class="highlight-item">
                                 <h3>Instruments</h3>
-                                <p>Piano • Guitar • Drums • Vocals</p>
+                                <p>Piano • Guitar • Drums • Vocals • Bass • Ukulele</p>
                             </div>
                             <div class="highlight-item">
                                 <h3>Experience</h3>
-                                <p>Performance & Education</p>
+                                <p>
+                                    Live performances at Montecasino (2018-2020) 
+                                    <br/>
+                                    Private teaching since 2019</p>
                             </div>
                             <div class="highlight-item">
                                 <h3>Teaching</h3>
                                 <p>All Ages & Skill Levels</p>
+                            </div>
+                        </div>
+
+                        <div class="services-section">
+                            <h2>Services Offered</h2>
+                            <div class="services-grid">
+                                <div class="service-category">
+                                    <h3><i class="fas fa-chalkboard-teacher"></i> Teaching</h3>
+                                    <ul>
+                                        <li>Home studio lessons</li>
+                                        <li>In-home instruction</li>
+                                        <li>Online lessons</li>
+                                    </ul>
+                                </div>
+                                <div class="service-category">
+                                    <h3><i class="fas fa-music"></i> Performing</h3>
+                                    <ul>
+                                        <li>Birthday celebrations</li>
+                                        <li>Business events</li>
+                                        <li>Band performances</li>
+                                        <li>Custom bookings</li>
+                                    </ul>
+                                </div>
+                                <div class="service-category">
+                                    <h3><i class="fas fa-headphones"></i> Audio Work</h3>
+                                    <ul>
+                                        <li>Recording sessions</li>
+                                        <li>Audio production</li>
+                                        <li>Music arrangement</li>
+                                        <li>Music transcription</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -403,7 +441,7 @@
     </main>
 
     <footer class="page-footer">
-        <p>&copy; 2024 Luke Higgins</p>
+        <p>&copy; <span id="current-year">2024</span> Luke Higgins</p>
         <p class="dev-credit">Developed by Adamstribe</p>
     </footer>
 

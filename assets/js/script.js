@@ -13,7 +13,16 @@ document.addEventListener('DOMContentLoaded', function() {
     handleContactForm();
     addPlaceholderInteractions();
     addLessonsInteractions();
+    setCurrentYear();
 });
+
+// Set current year dynamically
+function setCurrentYear() {
+    const yearElement = document.getElementById('current-year');
+    if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+    }
+}
 
 // Feature toggling based on config
 function handleFeatureToggling() {

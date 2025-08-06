@@ -12,7 +12,10 @@
 <body class="contact-page">
     <header class="page-header">
         <nav class="main-nav">
-            <a href="index.html" class="home-link">Luke Higgins</a>
+            <div class="site-title-area">
+                <a href="index.html" class="home-link">Luke Higgins</a>
+                <p class="nav-subtitle">Musician & Educator</p>
+            </div>
             <button class="mobile-nav-toggle" aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>
             <div class="nav-links">
                 <a href="bio.html">BIO</a>
@@ -58,7 +61,8 @@
                                 <div class="method-icon"><i class="fas fa-map-marker-alt"></i></div>
                                 <div class="method-info">
                                     <h3>Location</h3>
-                                    <p>Available for lessons and performances</p>
+                                    <p>91 Lachlan Rd, Glenferness AH, Sandton, 2191</p>
+                                    <p class="location-note">Available for lessons and performances</p>
                                 </div>
                             </div>
                         </div>
@@ -90,7 +94,11 @@
                                     <option value="guitar">Guitar Lessons</option>
                                     <option value="drums">Drum Lessons</option>
                                     <option value="vocals">Vocal Lessons</option>
+                                    <option value="bass">Bass Lessons</option>
+                                    <option value="ukulele">Ukulele Lessons</option>
                                     <option value="performance">Performance Booking</option>
+                                    <option value="audio">Audio Work</option>
+                                    <option value="transcription">Music Transcription</option>
                                     <option value="other">Other</option>
                                 </select>
                             </div>
@@ -109,7 +117,7 @@
     </main>
 
     <footer class="page-footer">
-        <p>&copy; 2024 Luke Higgins</p>
+        <p>&copy; <span id="current-year">2024</span> Luke Higgins</p>
         <p class="dev-credit">Developed by Adamstribe</p>
     </footer>
 

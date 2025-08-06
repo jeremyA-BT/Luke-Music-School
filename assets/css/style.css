@@ -88,6 +88,16 @@ body {
     font-weight: 300;
     line-height: 1.6;
     transition: background-color 0.3s ease, color 0.3s ease;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Ensure non-landing pages also have proper layout */
+body:not(.landing-page) {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 /* ===== LANDING PAGE (Hero with Background like Sean Mann) ===== */
@@ -249,6 +259,15 @@ body {
     width: 100%;
 }
 
+.hero-content-wrapper_v2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 100px;
+    max-width: 1200px;
+    width: 100%;
+}
+
 /* Artistic Center Image Frame */
 .artist-image-frame {
     position: relative;
@@ -288,6 +307,51 @@ body {
 }
 
 .hero-artist-photo:hover {
+    transform: scale(1.05);
+    filter: grayscale(0%) contrast(1.2);
+}
+
+
+/* Artistic Center Image Frame V2 */
+.artist-image-frame_v2 {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-border-outer_v2 {
+    position: relative;
+    padding: 10px;
+}
+
+.image-border-outer_v2.styled {
+    background: linear-gradient(135deg, #cc5500 0%, #b87333 25%, #2c3e50 50%, #34495e 75%, #cc5500 100%);
+    box-shadow: 
+        0 0 30px rgba(204, 85, 0, 0.4),
+        0 0 60px rgba(44, 62, 80, 0.3),
+        inset 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.image-border-inner_v2 {
+    position: relative;
+}
+
+/* .image-border-outer_v2.styled .image-border-inner_v2 {
+    padding: 8px;
+    background: #cecdcb;
+    overflow: hidden;
+    box-shadow: 0 0 50px rgba(212,175,55,0.5);
+} */
+
+.hero-artist-photo_v2 {
+    width: 520px;
+    height: 520px;
+    object-fit: cover;
+    transition: all 0.6s ease;
+}
+
+.hero-artist-photo_v2:hover {
     transform: scale(1.05);
     filter: grayscale(0%) contrast(1.2);
 }
@@ -537,7 +601,8 @@ body {
 }
 
 .page-main {
-    min-height: calc(100vh - 120px);
+    flex: 1;
+    padding: 0;
 }
 
 .page-container {
@@ -548,24 +613,26 @@ body {
 
 .page-footer {
     text-align: center;
-    padding: var(--spacing-lg);
+    padding: 1rem;
     border-top: 1px solid var(--theme-border);
     background: var(--theme-bg-secondary);
     transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .page-footer p {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: var(--theme-text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.1em;
+    margin: 0;
+    line-height: 1.4;
 }
 
 .page-footer .dev-credit {
-    font-size: 0.7rem !important;
+    font-size: 0.65rem !important;
     color: var(--theme-text-secondary) !important;
     opacity: 0.6 !important;
-    margin-top: 8px !important;
+    margin-top: 0.25rem !important;
     font-weight: 300 !important;
     text-transform: none !important;
     letter-spacing: 0.05em !important;
@@ -1483,6 +1550,9 @@ body {
     transition: all 0.4s ease;
     text-align: center;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .lesson-card:hover {
@@ -1515,6 +1585,170 @@ body {
     background: var(--color-warm-slate);
 }
 
+.bass-card .card-color-accent {
+    background: var(--color-warm-copper);
+}
+
+.ukulele-card .card-color-accent {
+    background: var(--color-warm-orange);
+}
+
+/* Services Section */
+.services-section {
+    margin-top: var(--spacing-xl);
+    padding: var(--spacing-xl);
+    background: var(--theme-bg-secondary);
+    border: 1px solid var(--theme-border);
+}
+
+.services-section h2 {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    color: var(--theme-text-primary);
+    margin-bottom: var(--spacing-lg);
+    text-align: center;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.service-category {
+    text-align: center;
+}
+
+.service-category h3 {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+}
+
+.service-category h3 i {
+    font-size: 1.5rem;
+}
+
+.service-category ul {
+    list-style: none;
+    padding: 0;
+}
+
+.service-category li {
+    color: var(--theme-text-secondary);
+    padding: var(--spacing-xs) 0;
+    position: relative;
+}
+
+.service-category li:before {
+    content: "•";
+    color: var(--color-primary);
+    margin-right: var(--spacing-sm);
+}
+
+/* Lesson Formats */
+.lesson-formats {
+    padding: var(--spacing-xl) 0;
+    background: var(--theme-bg-primary);
+}
+
+.formats-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+}
+
+.formats-content h2 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--theme-text-primary);
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.format-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-xl);
+}
+
+.format-option {
+    text-align: center;
+    padding: var(--spacing-lg);
+    background: var(--theme-bg-secondary);
+    border: 1px solid var(--theme-border);
+    transition: transform 0.3s ease;
+}
+
+.format-option:hover {
+    transform: translateY(-5px);
+}
+
+.format-icon {
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-md);
+}
+
+.format-option h3 {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    color: var(--theme-text-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.format-option p {
+    color: var(--theme-text-secondary);
+    line-height: 1.6;
+}
+
+/* Navigation subtitle styling */
+.site-title-area {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.site-title-area .home-link {
+    margin-bottom: 0.25rem;
+    position: relative;
+    z-index: 2;
+}
+
+.nav-subtitle {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    color: rgb(201, 149, 19);
+    margin: 0;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    opacity: 0.9;
+    position: relative;
+    z-index: 1;
+    margin-top: 0.25rem;
+}
+
+/* Subtitle styling */
+.subtitle {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-sm);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+
+.hero-description {
+    color: var(--theme-text-secondary);
+    font-size: 1.1rem;
+    margin-top: var(--spacing-sm);
+}
+
 .lesson-icon {
     font-size: 3rem;
     margin-bottom: var(--spacing-md);
@@ -1538,9 +1772,11 @@ body {
 
 .lesson-details {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    margin-top: var(--spacing-md);
+    margin-top: auto;
+    padding-top: var(--spacing-md);
 }
 
 .contact-for-pricing {
@@ -1906,9 +2142,9 @@ body {
 
 /* Contact Form */
 .contact-form h2 {
-    font-size: 2rem;
+    font-size: 1.6rem;
     font-weight: 400;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: 1.5rem;
     color: var(--theme-text-primary);
     font-family: var(--font-display);
     text-transform: uppercase;
@@ -1918,7 +2154,7 @@ body {
 .message-form {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-md);
+    gap: 1.2rem;
 }
 
 .form-group {
@@ -1929,8 +2165,8 @@ body {
 .form-group label {
     font-weight: 500;
     color: var(--theme-text-primary);
-    margin-bottom: var(--spacing-xs);
-    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 0.1em;
 }
@@ -1938,13 +2174,14 @@ body {
 .form-group input,
 .form-group select,
 .form-group textarea {
-    padding: var(--spacing-md);
+    padding: 0.8rem 1rem;
     border: 1px solid var(--theme-border);
     background: var(--theme-bg-secondary);
     color: var(--theme-text-primary);
     font-family: var(--font-family);
-    font-size: 1rem;
+    font-size: 0.95rem;
     transition: all 0.3s ease;
+    border-radius: 4px;
 }
 
 .form-group input:focus,
@@ -1955,8 +2192,13 @@ body {
     box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
 }
 
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
 .submit-btn {
-    padding: var(--spacing-md) var(--spacing-xl);
+    padding: 0.9rem 2rem;
     background: var(--gradient-gold);
     color: var(--color-white);
     border: none;
