@@ -1,8 +1,8 @@
 // Configuration for feature toggling
 const CONFIG = {
     showGallery: true,
-    showAudio: true,
-    showVideo: true,
+    showAudio: false,
+    showVideo: false,
     showTestimonials: true
 };
 
