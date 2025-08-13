@@ -183,7 +183,7 @@ body:not(.landing-page) {
 
 .landing-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     padding: var(--spacing-lg);
     position: relative;
@@ -2312,6 +2312,7 @@ body:not(.landing-page) {
         flex-shrink: 0;
         width: 100%;
         box-sizing: border-box;
+        justify-content: space-between; /* Override desktop right alignment for mobile */
     }
     
     .landing-main {
@@ -3021,6 +3022,16 @@ body:not(.landing-page) {
 @media (min-width: 769px) {
     .mobile-nav-toggle {
         display: none !important;
+    }
+    
+    /* Hide site title on landing page desktop view */
+    .landing-header .site-title-area {
+        display: none;
+    }
+    
+    /* Ensure menu is right-aligned on desktop */
+    .landing-header {
+        justify-content: flex-end;
     }
 }
 
