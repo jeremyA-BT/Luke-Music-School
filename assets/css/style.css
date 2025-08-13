@@ -1815,13 +1815,24 @@ body:not(.landing-page) {
 }
 
 .lesson-icon {
-    font-size: 3rem;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-bottom: var(--spacing-md);
     color: var(--color-primary);
 }
 
+.lesson-icon i {
+    font-size: 3rem;
+}
+
 .lesson-icon i.mdi {
     font-size: 4rem;
+}
+
+.lesson-icon i.fas {
+    font-size: 3rem;
 }
 
 .lesson-card h3 {
