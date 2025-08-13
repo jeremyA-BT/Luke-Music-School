@@ -122,37 +122,6 @@ function handleContactForm() {
 
 // Add interactions to placeholder content
 function addPlaceholderInteractions() {
-    // Gallery items
-    document.querySelectorAll('.gallery-item').forEach(item => {
-        item.addEventListener('click', () => {
-            const overlay = item.querySelector('.gallery-overlay');
-            if (overlay) {
-                overlay.style.background = 'linear-gradient(transparent, var(--color-primary))';
-                overlay.innerHTML = '<span>📷 Click to replace image</span>';
-                
-                setTimeout(() => {
-                    overlay.style.background = '';
-                    overlay.innerHTML = '<span>' + overlay.getAttribute('data-original') + '</span>';
-                }, 2000);
-            }
-        });
-    });
-
-    // Gallery placeholders (for any remaining placeholders)
-    document.querySelectorAll('.gallery-item .image-placeholder').forEach(placeholder => {
-        placeholder.addEventListener('click', () => {
-            placeholder.style.background = 'var(--color-primary)';
-            placeholder.style.color = 'white';
-            placeholder.innerHTML = '<span>📷 Upload Image</span>';
-            
-            setTimeout(() => {
-                placeholder.style.background = '';
-                placeholder.style.color = '';
-                placeholder.innerHTML = '<span>Performance Photo</span>';
-            }, 2000);
-        });
-    });
-
     // Audio placeholders
     document.querySelectorAll('.audio-placeholder').forEach(placeholder => {
         let isPlaying = false;
