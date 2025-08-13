@@ -5,6 +5,11 @@
     box-sizing: border-box;
 }
 
+/* Dynamic Viewport Height for Mobile Safari */
+:root {
+    --vh: 1vh;
+}
+
 /* ===== RESPONSIVE BREAKPOINTS ===== */
 /* Mobile: 320px - 768px */
 /* Tablet: 768px - 1024px */  
@@ -93,6 +98,31 @@ body {
     flex-direction: column;
 }
 
+/* Prevent body scroll when mobile menu is open */
+body.mobile-menu-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+/* For iOS Safari */
+body.mobile-menu-open {
+    touch-action: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Ensure landing pages maintain full height */
+body.landing-page {
+    min-height: 100vh;
+    min-height: -webkit-fill-available; /* iOS Safari fix */
+}
+
+body.landing-page.mobile-menu-open {
+    height: 100vh;
+    height: -webkit-fill-available; /* iOS Safari fix */
+}
+
 /* Ensure non-landing pages also have proper layout */
 body:not(.landing-page) {
     min-height: 100vh;
@@ -103,6 +133,8 @@ body:not(.landing-page) {
 /* ===== LANDING PAGE (Hero with Background like Sean Mann) ===== */
 .landing-page {
     height: 100vh;
+    height: -webkit-fill-available; /* iOS Safari fix */
+    height: calc(var(--vh, 1vh) * 100); /* Dynamic height */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -112,6 +144,8 @@ body:not(.landing-page) {
 
 .landing-hero {
     height: 100vh;
+    height: -webkit-fill-available; /* iOS Safari fix */
+    height: calc(var(--vh, 1vh) * 100); /* Dynamic height */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -132,7 +166,8 @@ body:not(.landing-page) {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: top;
+    object-position: center 20%;
+    transition: object-position 0.3s ease;
 }
 
 .hero-overlay {
@@ -148,10 +183,13 @@ body:not(.landing-page) {
 
 .landing-header {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
     padding: var(--spacing-lg);
     position: relative;
     z-index: 3;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .main-nav {
@@ -759,6 +797,30 @@ body:not(.landing-page) {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: var(--spacing-lg);
+}
+
+/* Mobile gallery improvements */
+@media (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: var(--spacing-md);
+    }
+    
+    .gallery-section h2 {
+        font-size: 1.6rem;
+        margin-bottom: var(--spacing-md);
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+    }
+    
+    .gallery-section {
+        margin-bottom: var(--spacing-lg);
+    }
 }
 
 .gallery-item {
@@ -1448,6 +1510,7 @@ body:not(.landing-page) {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center 20%;
 }
 
 .hero-overlay {
@@ -2226,16 +2289,71 @@ body:not(.landing-page) {
 
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
+    /* Fix landing page height issues on mobile */
+    .landing-page {
+        height: 100vh !important;
+        height: -webkit-fill-available !important; /* iOS Safari fix */
+        height: calc(var(--vh, 1vh) * 100) !important; /* Dynamic height */
+        min-height: 100vh;
+        min-height: -webkit-fill-available; /* iOS Safari fix */
+    }
+    
+    .landing-hero {
+        height: 100vh !important;
+        height: -webkit-fill-available !important; /* iOS Safari fix */
+        height: calc(var(--vh, 1vh) * 100) !important; /* Dynamic height */
+        min-height: 100vh;
+        min-height: -webkit-fill-available; /* iOS Safari fix */
+        padding-bottom: 0; /* Remove padding that might cause overflow */
+    }
+    
     .landing-header {
         padding: var(--spacing-md);
+        flex-shrink: 0;
+        width: 100%;
+        box-sizing: border-box;
     }
     
     .landing-main {
         padding: var(--spacing-md);
+        z-index: 1 !important;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 0;
+    }
+    
+    .landing-footer {
+        flex-shrink: 0;
+        padding: var(--spacing-md);
+        margin-top: auto;
     }
     
     .hero-content-wrapper {
         gap: var(--spacing-xl);
+        z-index: 1 !important;
+    }
+    
+    .hero-content-wrapper_v2 {
+        gap: var(--spacing-xl);
+        z-index: 1 !important;
+    }
+    
+    .artist-image-frame_v2,
+    .artist-name,
+    .landing-footer {
+        z-index: 1 !important;
+    }
+    
+    /* Force ALL landing page elements below mobile menu */
+    .landing-page * {
+        z-index: auto !important;
+    }
+    
+    .landing-page .mobile-nav-toggle,
+    .landing-page .main-nav {
+        z-index: 9999999 !important;
     }
     
     .hero-artist-photo {
@@ -2243,8 +2361,17 @@ body:not(.landing-page) {
         height: 250px;
     }
     
+    .hero-artist-photo_v2 {
+        width: 280px;
+        height: 280px;
+    }
+    
     .image-border-outer {
         padding: 15px;
+    }
+    
+    .image-border-outer_v2 {
+        padding: 8px;
     }
     
     .artist-name h1 {
@@ -2265,8 +2392,8 @@ body:not(.landing-page) {
     }
     
     .page-header .main-nav {
-        flex-direction: column;
-        gap: var(--spacing-md);
+        justify-content: space-between;
+        align-items: center;
         padding: 0 var(--spacing-md);
     }
     
@@ -2305,8 +2432,161 @@ body:not(.landing-page) {
         gap: var(--spacing-lg);
     }
     
+    .contact-methods {
+        gap: var(--spacing-lg);
+    }
+    
+    .contact-method {
+        flex-direction: row;
+        text-align: left;
+        gap: var(--spacing-md);
+        padding: var(--spacing-md);
+        background: var(--theme-bg-secondary);
+        border-radius: 8px;
+        border: 1px solid var(--theme-border);
+    }
+    
+    .method-icon {
+        font-size: 2rem;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: rgba(212, 175, 55, 0.1);
+        flex-shrink: 0;
+    }
+    
+    .method-info h3 {
+        font-size: 1.1rem;
+        margin-bottom: var(--spacing-xs);
+        color: var(--theme-text-primary);
+    }
+    
+    .method-info p {
+        font-size: 1rem;
+        line-height: 1.5;
+        margin: 0;
+    }
+    
+    .email-link,
+    .whatsapp-link {
+        word-break: break-all;
+        font-weight: 500;
+    }
+    
+    .quick-contact {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+    
+    .contact-btn {
+        width: 100%;
+        justify-content: center;
+        padding: var(--spacing-md);
+        font-size: 1rem;
+        border-radius: 8px;
+    }
+    
     .teaching-philosophy {
-        padding: var(--spacing-xl);
+        padding: var(--spacing-md);
+    }
+    
+    .philosophy-content h2 {
+        font-size: 2rem;
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .philosophy-text p {
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .philosophy-points {
+        gap: var(--spacing-md);
+        margin-top: var(--spacing-md);
+    }
+    
+    .point {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--spacing-sm);
+    }
+    
+    .point-icon {
+        font-size: 2rem;
+    }
+    
+    .point-text h4 {
+        font-size: 1rem;
+        margin-bottom: var(--spacing-xs);
+    }
+    
+    .point-text p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+    
+    /* Pricing and Scheduling Section Mobile */
+    .pricing-info-section {
+        padding: var(--spacing-md);
+        margin-bottom: var(--spacing-lg);
+    }
+    
+    .pricing-info-content h2 {
+        font-size: 1.6rem;
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .pricing-info-content p {
+        font-size: 1rem;
+        margin-bottom: var(--spacing-md);
+        line-height: 1.6;
+    }
+    
+    .contact-pricing-cta p {
+        font-size: 1rem;
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    /* Trial Section Mobile */
+    .trial-section {
+        padding: var(--spacing-md);
+        margin-bottom: var(--spacing-lg);
+    }
+    
+    .trial-content h2 {
+        font-size: 2rem;
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .trial-content p {
+        font-size: 1rem;
+        margin-bottom: var(--spacing-md);
+        line-height: 1.6;
+    }
+    
+    .trial-offer {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .trial-duration {
+        font-size: 1.1rem;
+        text-align: center;
+    }
+    
+    .trial-cta {
+        padding: var(--spacing-sm) var(--spacing-md);
+        font-size: 0.9rem;
+        display: block;
+        text-align: center;
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto;
     }
     
     .lessons-hero .hero-content h1 {
@@ -2316,25 +2596,102 @@ body:not(.landing-page) {
     .color-splash {
         display: none; /* Hide decorative elements on mobile */
     }
+    
+    /* Mobile Typography Improvements */
+    .bio-text h1 {
+        font-size: 2.2rem;
+    }
+    
+    .bio-intro {
+        font-size: 1.1rem;
+    }
+    
+    .bio-story p {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+    
+    .contact-info h1 {
+        font-size: 2.2rem;
+    }
+    
+    .contact-intro {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+    
+    .lesson-card h3 {
+        font-size: 1.3rem;
+    }
+    
+    .lesson-card p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+    
+    /* Improve spacing on mobile */
+    .page-container {
+        padding: var(--spacing-md);
+    }
+    
+    .bio-section,
+    .lesson-types,
+    .contact-section {
+        margin-bottom: var(--spacing-lg);
+    }
 }
 
 /* ===== ENHANCED RESPONSIVE STYLES ===== */
 
+/* Landing Page Header Styles */
+.landing-site-title {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: white;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    letter-spacing: 0.02em;
+}
+
+.landing-nav-subtitle {
+    font-family: var(--font-family);
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.landing-header .site-title-area {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
 /* Mobile Navigation */
 .mobile-nav-toggle {
     display: none;
-    background: none;
-    border: none;
-    color: var(--theme-text-primary);
-    font-size: 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 1.2rem;
     cursor: pointer;
-    padding: 8px;
-    border-radius: 4px;
+    padding: 12px;
+    border-radius: 6px;
     transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    min-width: 44px;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
 }
 
 .mobile-nav-toggle i {
     transition: transform 0.3s ease;
+    pointer-events: none;
+    display: block;
 }
 
 .mobile-nav-toggle:hover i {
@@ -2342,19 +2699,39 @@ body:not(.landing-page) {
 }
 
 .mobile-nav-toggle:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+
+.page-header .mobile-nav-toggle {
     background: var(--theme-bg-tertiary);
+    border: 1px solid var(--theme-border);
+    color: var(--theme-text-primary);
+    backdrop-filter: none;
 }
 
-.landing-page .mobile-nav-toggle {
-    color: white;
-}
-
-.landing-page .mobile-nav-toggle:hover {
-    background: rgba(255, 255, 255, 0.1);
+.page-header .mobile-nav-toggle:hover {
+    background: var(--theme-bg-secondary);
+    color: var(--color-primary);
 }
 
 /* Enhanced Mobile Styles */
 @media (max-width: 768px) {
+    /* Show mobile navigation toggle */
+    .mobile-nav-toggle {
+        display: flex !important;
+        z-index: 9999999 !important;
+    }
+    
+    /* Hide desktop navigation */
+    .main-nav {
+        display: none;
+    }
+    
+    .main-nav.active {
+        display: flex;
+        z-index: 999999 !important;
+    }
     /* Landing Page Mobile Navigation */
     .landing-page .main-nav {
         flex-direction: column;
@@ -2364,11 +2741,14 @@ body:not(.landing-page) {
         left: -100%;
         width: 100%;
         height: 100vh;
-        background: rgba(0, 0, 0, 0.95);
+        background: rgba(0, 0, 0, 0.98);
         padding: var(--spacing-xl);
         transition: left 0.3s ease;
-        z-index: 1000;
+        z-index: 999999;
         justify-content: center;
+        backdrop-filter: blur(20px);
+        overflow-y: auto;
+        overscroll-behavior: contain;
     }
 
     .landing-page .main-nav.active {
@@ -2376,11 +2756,11 @@ body:not(.landing-page) {
     }
 
     .landing-page .mobile-nav-toggle {
-        display: block;
+        display: flex;
         position: fixed;
         top: var(--spacing-md);
         right: var(--spacing-md);
-        z-index: 1001;
+        z-index: 9999999;
     }
 
     .landing-page .main-nav a {
@@ -2398,9 +2778,9 @@ body:not(.landing-page) {
 
     /* Page Header Mobile Navigation */
     .page-header .mobile-nav-toggle {
-        display: block;
+        display: flex;
         position: relative;
-        z-index: 1001;
+        z-index: 9999999;
     }
 
     .page-header .nav-links {
@@ -2414,8 +2794,11 @@ body:not(.landing-page) {
         padding: var(--spacing-xl);
         gap: var(--spacing-lg);
         transition: left 0.3s ease;
-        z-index: 1000;
+        z-index: 999999;
         justify-content: center;
+        backdrop-filter: blur(20px);
+        overflow-y: auto;
+        overscroll-behavior: contain;
     }
 
     .page-header .nav-links.active {
@@ -2487,7 +2870,7 @@ body:not(.landing-page) {
     /* Media Grid Mobile Fix */
     .media-grid {
         grid-template-columns: 1fr;
-        gap: var(--spacing-xl);
+        gap: var(--spacing-lg);
         height: auto;
     }
 
@@ -2497,6 +2880,12 @@ body:not(.landing-page) {
         min-height: 300px;
         max-width: none;
         width: 100%;
+        margin-bottom: var(--spacing-lg);
+    }
+    
+    .media-section h2 {
+        font-size: 1.6rem;
+        margin-bottom: var(--spacing-md);
     }
 
     /* Audio Items Mobile */
@@ -2570,6 +2959,28 @@ body:not(.landing-page) {
     .video-item:active {
         transform: scale(0.95);
     }
+    
+    /* Image consistency improvements */
+    .profile-photo {
+        max-width: 100%;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 3/4;
+    }
+    
+    .gallery-photo {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 4/3;
+        object-fit: cover;
+    }
+    
+    .hero-bg-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 25%;
+    }
 }
 
 /* Tablet Responsive Enhancements */
@@ -2599,12 +3010,154 @@ body:not(.landing-page) {
     .video-item.right {
         transform: translateX(140px) rotateY(-35deg) scale(0.75);
     }
+    
+    /* Tablet background image positioning */
+    .hero-bg-image {
+        object-position: center 22%;
+    }
 }
 
 /* Hide mobile nav toggle on desktop */
 @media (min-width: 769px) {
     .mobile-nav-toggle {
         display: none !important;
+    }
+}
+
+/* iOS Safari viewport height fix */
+@supports (-webkit-touch-callout: none) {
+    .landing-page {
+        min-height: -webkit-fill-available;
+    }
+    
+    .landing-hero {
+        min-height: -webkit-fill-available;
+    }
+    
+    /* Specific fix for iPhone SE and similar small screens */
+    @media (max-width: 480px) {
+        .landing-hero {
+            height: -webkit-fill-available !important;
+            height: calc(var(--vh, 1vh) * 100) !important;
+            min-height: -webkit-fill-available !important;
+            min-height: calc(var(--vh, 1vh) * 100) !important;
+        }
+        
+        .landing-page {
+            height: -webkit-fill-available !important;
+            height: calc(var(--vh, 1vh) * 100) !important;
+            min-height: calc(var(--vh, 1vh) * 100) !important;
+        }
+    }
+}
+
+/* Tablet landscape devices - allow scrolling for content overflow */
+@media (min-width: 768px) and (max-width: 1200px) and (orientation: landscape) and (max-height: 900px) {
+    .landing-page {
+        height: auto !important;
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
+        overflow-y: auto !important;
+    }
+    
+    .landing-hero {
+        height: auto !important;
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
+        overflow: visible !important;
+        padding-bottom: var(--spacing-lg);
+    }
+    
+    .landing-main {
+        flex: none;
+        padding: var(--spacing-lg);
+    }
+    
+    .hero-content-wrapper_v2 {
+        gap: var(--spacing-lg);
+        padding: var(--spacing-md) 0;
+    }
+    
+    .hero-artist-photo_v2 {
+        width: 350px;
+        height: 350px;
+    }
+    
+    .artist-name h1 {
+        font-size: 3.5rem;
+    }
+    
+    .tagline {
+        font-size: 1rem;
+    }
+}
+
+/* Specific fixes for iPad Mini and Surface Pro 7 landscape */
+@media (min-width: 1024px) and (max-width: 1366px) and (orientation: landscape) and (max-height: 800px) {
+    .landing-page {
+        height: auto !important;
+        overflow-y: auto !important;
+    }
+    
+    .landing-hero {
+        height: auto !important;
+        overflow: visible !important;
+        padding-bottom: var(--spacing-xl);
+    }
+    
+    .hero-content-wrapper_v2 {
+        gap: var(--spacing-xl);
+        max-width: none;
+        padding: var(--spacing-lg) 0;
+    }
+    
+    .hero-artist-photo_v2 {
+        width: 400px;
+        height: 400px;
+    }
+    
+    .artist-name h1 {
+        font-size: 4rem;
+    }
+}
+
+/* Small landscape devices (phones) - keep fixed height */
+@media (max-width: 767px) and (max-height: 500px) and (orientation: landscape) {
+    .landing-hero {
+        min-height: calc(100vh - 40px);
+        min-height: calc(-webkit-fill-available - 40px); /* iOS Safari fix */
+        padding-bottom: var(--spacing-xs);
+    }
+    
+    .landing-header {
+        padding: var(--spacing-sm);
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .landing-main {
+        padding: var(--spacing-sm);
+    }
+    
+    .landing-footer {
+        padding: var(--spacing-xs);
+    }
+    
+    .hero-content-wrapper_v2 {
+        gap: var(--spacing-md);
+    }
+    
+    .hero-artist-photo_v2 {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .artist-name h1 {
+        font-size: 2rem;
+    }
+    
+    .tagline {
+        font-size: 0.8rem;
     }
 }
 
@@ -2815,6 +3368,7 @@ body:not(.landing-page) {
     }
 }
 
+/* Very Small Screens (Mobile Phones) */
 @media (max-width: 480px) {
     .studio-gallery-section {
         padding-left: var(--spacing-sm);
@@ -2834,6 +3388,147 @@ body:not(.landing-page) {
     .indicator {
         width: 10px;
         height: 10px;
+    }
+    
+    /* Landing Page Mobile Enhancements for Small Screens */
+    .landing-site-title {
+        font-size: 1.4rem;
+    }
+    
+    .landing-nav-subtitle {
+        font-size: 0.8rem;
+    }
+    
+    .hero-artist-photo_v2 {
+        width: 240px;
+        height: 240px;
+    }
+    
+    .artist-name h1 {
+        font-size: 2.2rem;
+    }
+    
+    .tagline {
+        font-size: 0.9rem;
+        letter-spacing: 0.15em;
+    }
+    
+    /* Page Content Mobile Enhancements */
+    .bio-text h1,
+    .contact-info h1 {
+        font-size: 1.8rem;
+    }
+    
+    .lesson-card {
+        padding: var(--spacing-md);
+    }
+    
+    .page-container {
+        padding: var(--spacing-sm) var(--spacing-xs);
+    }
+    
+    /* Mobile Navigation Enhancements */
+    .mobile-nav-toggle {
+        min-width: 40px;
+        min-height: 40px;
+        padding: 10px;
+        font-size: 1.1rem;
+    }
+    
+    /* Contact Methods for Very Small Screens */
+    .contact-method {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--spacing-sm);
+        padding: var(--spacing-sm);
+    }
+    
+    .method-icon {
+        font-size: 1.8rem;
+        width: 50px;
+        height: 50px;
+        margin: 0 auto;
+    }
+    
+    .method-info h3 {
+        font-size: 1rem;
+    }
+    
+    .method-info p {
+        font-size: 0.9rem;
+    }
+    
+    .email-link,
+    .whatsapp-link {
+        word-break: break-word;
+    }
+    
+    /* Very small screen background positioning */
+    .hero-bg-image {
+        object-position: center 30%;
+    }
+    
+    /* Force full height on very small screens */
+    .landing-page {
+        height: 100vh !important;
+        height: -webkit-fill-available !important;
+        height: calc(var(--vh, 1vh) * 100) !important;
+        min-height: 100vh !important;
+        min-height: -webkit-fill-available !important;
+    }
+    
+    .landing-hero {
+        height: 100vh !important;
+        height: -webkit-fill-available !important;
+        height: calc(var(--vh, 1vh) * 100) !important;
+        min-height: 100vh !important;
+        min-height: -webkit-fill-available !important;
+        padding-bottom: 0;
+    }
+    
+    .landing-footer {
+        padding: var(--spacing-sm);
+    }
+    
+    .landing-main {
+        padding: var(--spacing-sm);
+        flex: 1;
+        min-height: 0;
+    }
+    
+    /* Force background to cover entire viewport on small screens */
+    .hero-background {
+        height: 100vh !important;
+        height: -webkit-fill-available !important;
+        height: calc(var(--vh, 1vh) * 100) !important;
+    }
+    
+    .hero-bg-image {
+        height: 100vh !important;
+        height: -webkit-fill-available !important;
+        height: calc(var(--vh, 1vh) * 100) !important;
+    }
+    
+    /* Extra small screens header width fix */
+    .landing-header {
+        padding: var(--spacing-sm);
+        width: 100vw;
+        max-width: 100%;
+        margin: 0;
+        left: 0;
+        right: 0;
+        box-sizing: border-box;
+        overflow-x: hidden;
+    }
+    
+    .landing-site-title {
+        font-size: 1.2rem;
+        flex-shrink: 1;
+        min-width: 0;
+    }
+    
+    .landing-nav-subtitle {
+        font-size: 0.7rem;
     }
 }
 
