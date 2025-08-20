@@ -2,16 +2,14 @@
 # This replaces the .htaccess functionality
 
 # Redirect clean URLs to actual HTML files
-/               /random-landing.html  200
 /Bio            /bio.html           200
 /Lessons        /lessons.html       200
 /Contact        /contact.html       200
 
 # Redirect old URLs to new clean URLs (SEO)
-/index.html     /                   301
-/index_v2.html  /                   301
+/index-v1.html  /                   301
+/index-v2.html  /                   301
 /index-random.html  /               301
-/random-landing.html  /             301
 /bio.html       /Bio                301
 /lessons.html   /Lessons            301
 /contact.html   /Contact            301
@@ -22,4 +20,4 @@
 /Contact/       /Contact            301
 
 # Fallback for 404s - redirect to home
-/*              /index-random.html  404
+/*              /  404
