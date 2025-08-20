@@ -28,11 +28,19 @@
     
     // Update browser history to show clean URLs (for display purposes)
     // This works for both local development and Netlify
-    if (window.location.pathname.endsWith('.html') && !path.includes('index-random')) {
-        const cleanPath = window.location.pathname
-            .replace('/bio.html', '/Bio')
-            .replace('/lessons.html', '/Lessons')
-            .replace('/contact.html', '/Contact');
+    if (window.location.pathname.endsWith('.html')) {
+        let cleanPath = window.location.pathname;
+        
+        // All index pages should show as root '/'
+        if (path.includes('index.html') || path.includes('index_v2.html') || path.includes('index-random.html')) {
+            cleanPath = '/';
+        } else {
+            // Other pages get clean URLs
+            cleanPath = cleanPath
+                .replace('/bio.html', '/Bio')
+                .replace('/lessons.html', '/Lessons')
+                .replace('/contact.html', '/Contact');
+        }
         
         if (cleanPath !== window.location.pathname) {
             window.history.replaceState({}, '', cleanPath);
@@ -59,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 link.href = 'lessons.html';
             } else if (href === '/Contact') {
                 link.href = 'contact.html';
-            } else if (href === '/' || href === '/index-random.html') {
+            } else if (href === '/') {
                 link.href = 'index-random.html';
             }
         });
