@@ -2,7 +2,7 @@
 # This replaces the .htaccess functionality
 
 # Redirect clean URLs to actual HTML files
-/        /index-random.html       200
+/               /index-random.html  200
 /Bio            /bio.html           200
 /Lessons        /lessons.html       200
 /Contact        /contact.html       200
