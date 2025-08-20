@@ -1,0 +1,29 @@
+RewriteEngine On
+
+# Redirect root to index.php for random landing page selection
+DirectoryIndex index.php
+
+# Clean URL redirects - redirect old URLs to clean ones
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/+bio\.html[\s?] [NC]
+RewriteRule ^ /Bio? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/+lessons\.html[\s?] [NC]
+RewriteRule ^ /Lessons? [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/+contact\.html[\s?] [NC]
+RewriteRule ^ /Contact? [R=301,L]
+
+# Clean URL rewriting - serve HTML files for clean URLs
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Serve the appropriate HTML files for clean URLs
+RewriteRule ^Bio/?$ bio.html [L]
+RewriteRule ^Lessons/?$ lessons.html [L]
+RewriteRule ^Contact/?$ contact.html [L]
+
+# Prevent direct access to HTML files (optional)
+# RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/+.*\.html[\s?] [NC]
+# RewriteCond %{REQUEST_URI} !^/index\.html$
+# RewriteCond %{REQUEST_URI} !^/index_v2\.html$
+# RewriteRule ^.*\.html$ - [R=404,L]

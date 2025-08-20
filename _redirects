@@ -1,0 +1,20 @@
+# Netlify redirects file
+# This replaces the .htaccess functionality
+
+# Redirect clean URLs to actual HTML files
+/Bio            /bio.html           200
+/Lessons        /lessons.html       200
+/Contact        /contact.html       200
+
+# Redirect old URLs to new clean URLs (SEO)
+/bio.html       /Bio                301
+/lessons.html   /Lessons            301
+/contact.html   /Contact            301
+
+# Handle trailing slashes
+/Bio/           /Bio                301
+/Lessons/       /Lessons            301
+/Contact/       /Contact            301
+
+# Fallback for 404s - redirect to home
+/*              /index-random.html  404

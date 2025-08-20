@@ -1,0 +1,52 @@
+# Netlify configuration file
+[build]
+  # No build command needed for static site
+  publish = "."
+
+[build.environment]
+  # Set Node.js version if needed (optional)
+  NODE_VERSION = "18"
+
+# Handle single-page app style routing
+[[redirects]]
+  from = "/Bio"
+  to = "/bio.html"
+  status = 200
+
+[[redirects]]
+  from = "/Lessons"
+  to = "/lessons.html"
+  status = 200
+
+[[redirects]]
+  from = "/Contact"
+  to = "/contact.html"
+  status = 200
+
+# Redirect old URLs to clean URLs
+[[redirects]]
+  from = "/bio.html"
+  to = "/Bio"
+  status = 301
+
+[[redirects]]
+  from = "/lessons.html"
+  to = "/Lessons"
+  status = 301
+
+[[redirects]]
+  from = "/contact.html"
+  to = "/Contact"
+  status = 301
+
+# Set index-random.html as the main index
+[[redirects]]
+  from = "/"
+  to = "/index-random.html"
+  status = 200
+
+# Handle 404s
+[[redirects]]
+  from = "/*"
+  to = "/index-random.html"
+  status = 404
