@@ -31,9 +31,13 @@
     if (window.location.pathname.endsWith('.html')) {
         let cleanPath = window.location.pathname;
         
-        // All index pages should show as root '/'
-        if (path.includes('index.html') || path.includes('index_v2.html') || path.includes('index-random.html')) {
+        // All index pages should show as root '/' 
+        // BUT don't interfere with index-random.html while it's redirecting
+        if (path.includes('index.html') || path.includes('index_v2.html')) {
             cleanPath = '/';
+        } else if (path.includes('index-random.html') || path.includes('random-landing.html')) {
+            // Let random landing pages handle their own redirect first
+            return;
         } else {
             // Other pages get clean URLs
             cleanPath = cleanPath
@@ -68,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
             } else if (href === '/Contact') {
                 link.href = 'contact.html';
             } else if (href === '/') {
-                link.href = 'index-random.html';
+                link.href = 'random-landing.html';
             }
         });
     }

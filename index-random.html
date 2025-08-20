@@ -43,17 +43,33 @@
     </div>
 
     <script>
-        // Random landing page selector for Live Server
-        const randomChoice = Math.random() < 0.5;
+        // Random landing page selector - works for both local and Netlify
+        // Force a fresh random number each time (prevent caching issues)
+        const timestamp = Date.now();
+        const randomSeed = Math.sin(timestamp) * 10000;
+        const randomChoice = (randomSeed - Math.floor(randomSeed)) < 0.5;
         
-        // Small delay for visual effect
+        // Debug logging (remove in production if needed)
+        console.log('Random seed:', randomSeed);
+        console.log('Random choice (true = index.html, false = index_v2.html):', randomChoice);
+        
+        // Small delay for visual effect, then redirect
         setTimeout(() => {
             if (randomChoice) {
+                console.log('Redirecting to index.html');
                 window.location.replace('index.html');
             } else {
+                console.log('Redirecting to index_v2.html');
                 window.location.replace('index_v2.html');
             }
-        }, 800);
+        }, 500); // Reduced delay for better UX
+        
+        // Prevent any potential caching issues
+        window.addEventListener('pageshow', function(event) {
+            if (event.persisted) {
+                window.location.reload();
+            }
+        });
     </script>
 </body>
 </html>
