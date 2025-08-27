@@ -859,6 +859,10 @@ body:not(.landing-page) {
     transform: scale(1.05);
 }
 
+.gallery-photo.align-top {
+    object-position: top;
+}
+
 .gallery-overlay {
     position: absolute;
     bottom: 0;
