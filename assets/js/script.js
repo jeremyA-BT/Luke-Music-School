@@ -83,40 +83,109 @@ function addPageAnimations() {
 function handleContactForm() {
     const form = document.querySelector('.message-form');
     if (form) {
-        form.addEventListener('submit', function(e) {
+        form.addEventListener('submit', async function(e) {
             e.preventDefault();
+            
+            // Get form elements
+            const button = form.querySelector('.submit-btn');
+            const messageDiv = document.getElementById('form-message');
+            const originalText = button.textContent;
             
             // Get form data
             const formData = new FormData(form);
-            const data = Object.fromEntries(formData);
             
             // Basic validation
-            if (!data.name || !data.email || !data.message) {
-                alert('Please fill in all required fields.');
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const message = formData.get('message');
+            
+            if (!name || !email || !message) {
+                showFormMessage('Please fill in all required fields.', 'error');
                 return;
             }
             
-            // Simulate form submission
-            const button = form.querySelector('.submit-btn');
-            const originalText = button.textContent;
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showFormMessage('Please enter a valid email address.', 'error');
+                return;
+            }
             
+            // Update button state
             button.textContent = 'Sending...';
             button.disabled = true;
             button.style.opacity = '0.7';
+            hideFormMessage();
             
-            setTimeout(() => {
-                button.textContent = 'Message Sent!';
-                button.style.background = 'var(--color-warm-teal)';
-                button.style.opacity = '1';
+            try {
+                // Submit to Formspree
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
                 
-                setTimeout(() => {
-                    button.textContent = originalText;
-                    button.disabled = false;
-                    button.style.background = '';
+                if (response.ok) {
+                    // Success
+                    const data = await response.json();
+                    button.textContent = 'Message Sent!';
+                    button.style.background = 'var(--color-warm-teal)';
+                    button.style.opacity = '1';
+                    showFormMessage('Thank you! Your message has been sent successfully. I\'ll get back to you soon.', 'success');
                     form.reset();
-                }, 2000);
-            }, 1500);
+                    
+                    // Reset button after delay
+                    setTimeout(() => {
+                        button.textContent = originalText;
+                        button.disabled = false;
+                        button.style.background = '';
+                        button.style.opacity = '';
+                    }, 5000);
+                } else {
+                    // Handle Formspree errors
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || 'Form submission failed');
+                }
+            } catch (error) {
+                // Error handling
+                console.error('Form submission error:', error);
+                button.textContent = originalText;
+                button.disabled = false;
+                button.style.opacity = '';
+                showFormMessage('Sorry, there was an error sending your message. Please try again or contact me directly at lukesterhi@gmail.com', 'error');
+            }
         });
+    }
+}
+
+// Helper function to show form messages
+function showFormMessage(message, type) {
+    const messageDiv = document.getElementById('form-message');
+    if (messageDiv) {
+        messageDiv.textContent = message;
+        messageDiv.className = `form-message ${type}`;
+        messageDiv.style.display = 'block';
+        
+        // Scroll to message if needed
+        messageDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        
+        // Auto-hide success messages after 5 seconds
+        if (type === 'success') {
+            setTimeout(() => {
+                hideFormMessage();
+            }, 5000);
+        }
+    }
+}
+
+// Helper function to hide form messages
+function hideFormMessage() {
+    const messageDiv = document.getElementById('form-message');
+    if (messageDiv) {
+        messageDiv.style.display = 'none';
+        messageDiv.textContent = '';
     }
 }
 
