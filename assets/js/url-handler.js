@@ -1,13 +1,13 @@
-// URL Handler for Development & Netlify
+// URL Handler for HostAfrica & Development
 // This handles clean URLs and ensures proper navigation
 
 (function() {
     // Get current path
     const path = window.location.pathname;
-    const isNetlify = window.location.hostname.includes('netlify') || window.location.hostname.includes('app');
+    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
     
     // For local development (Live Server), handle routing
-    if (!isNetlify && window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+    if (isLocal) {
         const currentFile = window.location.href.split('/').pop();
         
         // Handle clean URL routing for Live Server
@@ -27,7 +27,7 @@
     }
     
     // Update browser history to show clean URLs (for display purposes)
-    // This works for both local development and Netlify
+    // This works for both local development and production hosting
     if (window.location.pathname.endsWith('.html')) {
         let cleanPath = window.location.pathname;
         
@@ -54,11 +54,10 @@
 
 // Handle navigation clicks to use clean URLs
 document.addEventListener('DOMContentLoaded', function() {
-    const isNetlify = window.location.hostname.includes('netlify') || window.location.hostname.includes('app');
     const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
     
-    // Only update links for local development - Netlify handles routing natively
-    if (isLocal && !isNetlify) {
+    // For local development, convert clean URLs to actual file paths
+    if (isLocal) {
         const navLinks = document.querySelectorAll('a[href^="/"]');
         
         navLinks.forEach(link => {
@@ -77,5 +76,5 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // For Netlify, the links stay as clean URLs and routing is handled by _redirects
+    // For production hosting, clean URLs are handled by .htaccess
 });

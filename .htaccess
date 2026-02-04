@@ -1,7 +1,20 @@
 RewriteEngine On
 
-# Redirect root to index.php for random landing page selection
-DirectoryIndex index.php
+# Set default index file
+DirectoryIndex index.php index.html
+
+# Force HTTPS redirect (with proper conditions for HostAfrica)
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Security Headers (only if mod_headers is available)
+<IfModule mod_headers.c>
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
 
 # Clean URL redirects - redirect old URLs to clean ones
 RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/+bio\.html[\s?] [NC]

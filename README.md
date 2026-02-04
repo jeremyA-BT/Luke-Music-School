@@ -164,10 +164,10 @@ Change font in CSS:
 ## Form Integration
 
 The contact form is ready for integration with:
-- **Formspree** - Simple form handling service
-- **Netlify Forms** - If hosting on Netlify  
+- **Formspree** - Simple form handling service (currently configured)
 - **EmailJS** - Client-side email sending
 - **Custom backend** - PHP, Node.js, etc.
+- **HostAfrica forms** - If your hosting provider supports form processing
 
 ## Performance
 
