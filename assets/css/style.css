@@ -384,8 +384,8 @@ body:not(.landing-page) {
 } */
 
 .hero-artist-photo_v2 {
-    width: 520px;
-    height: 520px;
+    width: 400px;
+    height: 400px;
     object-fit: cover;
     object-position: top;
     transition: all 0.6s ease;
