@@ -1,0 +1,11 @@
+# Admin configuration — contains DB credentials, never commit
+admin/includes/config.php
+
+# Setup installer — should be deleted after first run
+admin/setup/install.php
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+*.swp

@@ -1,0 +1,27 @@
+RewriteEngine On
+
+# Force HTTPS (inherits from root, but explicit here as a safety net)
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Block direct browser access to sensitive directories
+RewriteRule ^includes/ - [F,L]
+RewriteRule ^lib/      - [F,L]
+RewriteRule ^setup/    - [F,L]
+
+# Security headers
+<IfModule mod_headers.c>
+    Header always set X-Frame-Options "DENY"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Prevent directory listing
+Options -Indexes
+
+# Deny access to .php files inside sensitive subdirectories (belt and suspenders)
+<FilesMatch "^(config|db|auth|functions|layout)\.php$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
