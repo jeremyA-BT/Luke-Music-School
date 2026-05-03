@@ -290,6 +290,19 @@ a:hover { text-decoration: underline; }
 .badge-sent  { background: #dbeafe; color: #1d4ed8; }
 .badge-paid  { background: var(--color-success-lt); color: var(--color-success); }
 
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 100px;
+  font-size: .75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.status-scheduled { background: #fef3c7; color: #92400e; }
+.status-recurring  { background: #ede9fe; color: #5b21b6; }
+
 /* Buttons */
 .btn {
   display: inline-flex;
@@ -383,6 +396,10 @@ label {
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--color-text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 input[type="text"],
@@ -628,7 +645,54 @@ textarea { resize: vertical; min-height: 80px; }
   padding-top: 8px;
 }
 
-/* Filter bar */
+/* Preset chips */
+.preset-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.preset-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: var(--color-accent-lt);
+  color: var(--color-accent-dk);
+  border: 1px solid #c3d9c4;
+  border-radius: 100px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .15s, box-shadow .15s;
+  white-space: nowrap;
+}
+
+.preset-chip:hover {
+  background: var(--color-accent);
+  color: #fff;
+  border-color: var(--color-accent);
+}
+
+.preset-chip .chip-rate {
+  opacity: .7;
+  font-weight: 400;
+}
+
+.preset-chip-add {
+  background: var(--color-bg);
+  color: var(--color-muted);
+  border-color: var(--color-border);
+}
+
+.preset-chip-add:hover {
+  background: var(--color-text);
+  color: #fff;
+  border-color: var(--color-text);
+}
+
+/* Filter bar (legacy — kept for clients search) */
 .filter-bar {
   display: flex;
   gap: 10px;
@@ -636,9 +700,245 @@ textarea { resize: vertical; min-height: 80px; }
   flex-wrap: wrap;
   margin-bottom: 20px;
 }
-
 .filter-bar input,
 .filter-bar select { width: auto; flex: 0 1 200px; }
+
+/* ===== FILTER PANEL ===== */
+.filter-panel {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-sm);
+}
+
+.filter-panel-row {
+  display: flex;
+  gap: 14px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.filter-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1 1 160px;
+}
+
+.filter-field label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.filter-field .input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.filter-field .input-wrap .input-icon {
+  position: absolute;
+  left: 10px;
+  color: var(--color-muted);
+  pointer-events: none;
+  font-size: 0.85rem;
+}
+
+.filter-field .input-wrap input,
+.filter-field .input-wrap select {
+  padding-left: 32px;
+}
+
+.filter-field input,
+.filter-field select {
+  width: 100%;
+}
+
+.filter-field.filter-search { flex: 2 1 220px; }
+.filter-field.filter-dates  { flex: 1 1 140px; }
+.filter-field.filter-status { flex: 1 1 150px; }
+
+.filter-actions {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+  padding-bottom: 1px;
+}
+
+.filter-active-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--color-border);
+  font-size: 0.82rem;
+  color: var(--color-muted);
+  flex-wrap: wrap;
+}
+
+.filter-active-bar .filter-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--color-accent-lt);
+  color: var(--color-accent-dk);
+  border-radius: 100px;
+  padding: 3px 10px;
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+.filter-clear-all {
+  margin-left: auto;
+  font-size: 0.8rem;
+  color: var(--color-danger);
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 2px 0;
+}
+.filter-clear-all:hover { text-decoration: underline; }
+
+/* ===== PERIOD TABS ===== */
+.period-tabs {
+  display: inline-flex;
+  gap: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.period-tab {
+  padding: 7px 16px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--color-muted);
+  text-decoration: none;
+  background: var(--color-surface);
+  border-right: 1px solid var(--color-border);
+  transition: background .12s, color .12s;
+  white-space: nowrap;
+}
+
+.period-tab:last-child { border-right: none; }
+.period-tab:hover { background: var(--color-bg); color: var(--color-text); text-decoration: none; }
+.period-tab.active {
+  background: var(--color-accent-dk);
+  color: #fff;
+  font-weight: 600;
+}
+
+/* ===== ICON BUTTON VARIANTS ===== */
+.btn-icon-only {
+  padding: 6px 9px;
+  min-width: 32px;
+  justify-content: center;
+}
+
+.btn-info {
+  background: #dbeafe;
+  color: #1d4ed8;
+  border-color: #bfdbfe;
+}
+.btn-info:hover { background: #1d4ed8; color: #fff; border-color: #1d4ed8; }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-muted);
+  border-color: transparent;
+}
+.btn-ghost:hover { background: var(--color-bg); color: var(--color-text); border-color: var(--color-border); }
+
+/*
+ * Button group — visually connects icon buttons into a single strip.
+ * Usage: wrap adjacent .btn-act elements in <div class="btn-group">.
+ */
+.btn-group {
+  display: inline-flex;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-act {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 9px;
+  font-size: .8rem;
+  line-height: 1;
+  background: var(--color-surface);
+  color: var(--color-muted);
+  border: none;
+  border-right: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: background .12s, color .12s;
+  text-decoration: none;
+  white-space: nowrap;
+  min-height: 30px;
+}
+.btn-act:last-child { border-right: none; }
+.btn-act:hover {
+  background: var(--color-accent-lt);
+  color: var(--color-accent-dk);
+  text-decoration: none;
+}
+.btn-act-danger {
+  color: var(--color-danger);
+}
+.btn-act-danger:hover {
+  background: var(--color-danger-lt);
+  color: var(--color-danger);
+}
+.btn-act-success {
+  color: var(--color-success);
+}
+.btn-act-success:hover {
+  background: var(--color-success-lt);
+  color: var(--color-success);
+}
+
+/* Row actions layout */
+.row-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 5px;
+  flex-wrap: nowrap;
+}
+
+/* Notes field context labels */
+.field-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 100px;
+}
+.field-tag-private {
+  background: #f1f5f9;
+  color: #475569;
+}
+.field-tag-visible {
+  background: var(--color-success-lt);
+  color: var(--color-success);
+}
+
+/* Nav icon spacing */
+.nav-icon { width: 16px; text-align: center; opacity: .7; }
 
 /* Empty state */
 .empty-state {
@@ -672,20 +972,337 @@ textarea { resize: vertical; min-height: 80px; }
 .modal-box p  { color: var(--color-muted); font-size: 0.9rem; margin-bottom: 20px; }
 .modal-actions { display: flex; gap: 10px; justify-content: flex-end; }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .sidebar { transform: translateX(-100%); transition: transform .25s; }
-  .sidebar.open { transform: translateX(0); }
-  .main-content { margin-left: 0; }
-  .form-grid { grid-template-columns: 1fr; }
-  .banking-grid { grid-template-columns: 1fr 1fr; }
-  .invoice-view { padding: 24px; }
-  .invoice-view-header { flex-direction: column; gap: 20px; }
-  .invoice-view-title { text-align: left; }
+/* btn-success */
+.btn-success {
+  background: #2c6e2c;
+  color: #fff;
+  border-color: #2c6e2c;
+}
+.btn-success:hover { background: #236023; border-color: #236023; }
+
+/* Pagination */
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+  justify-content: center;
+}
+.pagination-info {
+  font-size: .875rem;
+  color: var(--color-muted);
 }
 
-@media print {
-  .sidebar, .topbar, .topbar-actions, .btn, .filter-bar, .form-actions { display: none !important; }
+/* Client notes on invoice view */
+.invoice-view-client-notes {
+  border-top: 1px solid var(--color-border);
+  padding: 16px 0 0;
+  margin-top: 8px;
+}
+.invoice-view-client-notes h3 {
+  font-size: .75rem;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--color-muted);
+  margin: 0 0 6px;
+}
+.invoice-view-client-notes p {
+  font-size: .9rem;
+  color: var(--color-text);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ===================================================
+   MOBILE NAVIGATION CHROME
+   =================================================== */
+
+/* Hamburger — hidden on desktop */
+.sidebar-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  cursor: pointer;
+  font-size: 1rem;
+  color: var(--color-text);
+  flex-shrink: 0;
+}
+.sidebar-toggle:hover { background: var(--color-bg); }
+
+/* Sidebar overlay — hidden on desktop */
+.sidebar-overlay {
+  display: none;
+}
+
+/* ===================================================
+   RESPONSIVE — 768 px
+   =================================================== */
+@media (max-width: 768px) {
+
+  /* --- Sidebar --- */
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform .25s ease;
+    z-index: 300;
+  }
+  .sidebar.open { transform: translateX(0); }
+
+  /* Overlay */
+  .sidebar-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .45);
+    z-index: 250;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .25s ease;
+  }
+  .sidebar-overlay.visible {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  /* --- Shell & topbar --- */
   .main-content { margin-left: 0; }
-  .invoice-view { box-shadow: none; border: none; }
+  .sidebar-toggle { display: flex; }
+
+  .topbar {
+    padding: 10px 16px;
+    gap: 10px;
+  }
+  .topbar h1 {
+    font-size: .95rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1;
+  }
+
+  /* --- Page body --- */
+  .page-body { padding: 14px 12px; }
+
+  /* --- Stats grid: 2 columns --- */
+  .stats-grid { grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+  .stat-card { padding: 14px; }
+  .stat-card .stat-value { font-size: 1.5rem; }
+
+  /* --- Cards --- */
+  .card-header {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px 16px;
+  }
+  .card-header h2 { font-size: .9rem; }
+  .card-body { padding: 14px 16px; }
+
+  /* --- Forms --- */
+  .form-grid { grid-template-columns: 1fr; gap: 14px; }
+  .invoice-meta-grid { grid-template-columns: 1fr !important; }
+  .banking-grid { grid-template-columns: 1fr 1fr; }
+
+  /* Ensure form labels don't wrap awkwardly */
+  label { flex-wrap: wrap; }
+
+  /* --- Buttons --- */
+  .btn { min-height: 40px; }
+  .btn-sm { min-height: 36px; padding: 6px 12px; }
+  .btn-icon-only { min-height: 36px; min-width: 36px; }
+
+  /* --- Filter panel --- */
+  .filter-panel { padding: 12px; }
+  .filter-panel-row { flex-direction: column; gap: 10px; }
+  .filter-field,
+  .filter-field.filter-search,
+  .filter-field.filter-dates,
+  .filter-field.filter-status { flex: 1 1 auto; width: 100%; }
+  .filter-actions { width: 100%; justify-content: flex-start; }
+
+  /* --- Period tabs --- */
+  .period-tabs {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+    width: 100%;
+    flex-shrink: 0;
+  }
+  .period-tab { padding: 8px 14px; font-size: .78rem; }
+
+  /* --- Period heading row --- */
+  .period-header-row { flex-direction: column; align-items: flex-start; gap: 6px; }
+
+  /* --- Tables (general) --- */
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table th, table td { padding: 10px 10px; }
+  .td-actions { flex-wrap: wrap; gap: 4px; }
+
+  /* Hide lower-priority list actions — users tap View to access them */
+  .btn-mobile-hide { display: none; }
+
+  /* ---- MOBILE CARD TABLES ----
+     Add class="mobile-cards" to <table> and data-label="Column" to each <td>
+     to convert a table into a stacked card list on mobile.
+  */
+  .mobile-cards thead { display: none; }
+
+  .mobile-cards tbody tr {
+    display: block;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    margin-bottom: 10px;
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+  }
+
+  /* Each cell becomes a labelled row inside the card */
+  .mobile-cards tbody td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--color-border);
+    border-left: none;
+    border-right: none;
+    text-align: right;
+  }
+
+  /* Suppress the bottom border on the last cell */
+  .mobile-cards tbody tr td:last-child { border-bottom: none; }
+
+  /* Show the column header as a left-aligned label */
+  .mobile-cards tbody td[data-label]::before {
+    content: attr(data-label);
+    font-size: .72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: var(--color-muted);
+    text-align: left;
+    margin-right: auto;
+    padding-right: 12px;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  /* Actions row — full-width, left-aligned buttons, no label */
+  .mobile-cards tbody td.td-actions-cell {
+    justify-content: flex-end;
+    padding: 10px 12px;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .mobile-cards tbody td.td-actions-cell::before { display: none; }
+
+  /* Remove hover background change on card rows */
+  .mobile-cards tbody tr:hover td { background: inherit; }
+
+  /* --- Invoice view --- */
+  .invoice-view { padding: 20px 16px; max-width: 100%; }
+  .invoice-view-header { flex-direction: column; gap: 16px; }
+  .invoice-view-title { text-align: left; }
+  .invoice-view-items { overflow-x: auto; }
+  .invoice-view-banking { padding: 12px 14px; }
+  .banking-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  /* --- Settings tabs: scroll instead of wrap --- */
+  .settings-tabs-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 20px;
+  }
+
+  /* --- Presets chips wrap nicely (already flex-wrap, just tighten) --- */
+  .preset-chip { font-size: .78rem; padding: 7px 12px; }
+
+  /* --- Pagination --- */
+  .pagination { gap: 8px; }
+}
+
+/* ===================================================
+   RESPONSIVE — 480 px (small phones)
+   =================================================== */
+@media (max-width: 480px) {
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+
+  .page-body { padding: 10px 8px; }
+
+  .invoice-view { padding: 16px 12px; }
+
+  /* Show amounts without R prefix if space too tight — not needed, just ensure wrap */
+  .line-items-table .col-qty,
+  .line-items-table .col-amt { width: auto; }
+
+  /* Make invoice totals responsive */
+  .invoice-totals .total-row { gap: 10px; }
+  .invoice-totals .total-label { min-width: 80px; }
+  .invoice-totals .total-value { min-width: 80px; }
+}
+
+/* ===================================================
+   PRINT
+   =================================================== */
+@media print {
+  .sidebar, .topbar, .sidebar-toggle, .sidebar-overlay,
+  .btn, .filter-bar, .filter-panel, .form-actions,
+  .pagination, .period-tabs { display: none !important; }
+  .main-content { margin-left: 0; }
+  .invoice-view { box-shadow: none; border: none; max-width: 100%; }
+}
+
+/* ── Quick-add client modal ─────────────────────────────── */
+.qc-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+.qc-modal {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 32px rgba(0,0,0,.18);
+  width: 100%;
+  max-width: 440px;
+}
+.qc-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--color-border);
+}
+.qc-modal-header h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.qc-close {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--color-muted);
+  padding: 0 4px;
+}
+.qc-close:hover { color: var(--color-text); }
+.qc-modal-body {
+  padding: 20px;
+}
+.qc-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 12px 20px;
+  border-top: 1px solid var(--color-border);
 }
