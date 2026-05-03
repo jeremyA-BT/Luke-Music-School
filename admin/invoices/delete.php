@@ -19,6 +19,12 @@ if (!$invoice) {
     redirect($root . '/invoices/index.php');
 }
 
+// Paid invoices are locked from deletion.
+if ($invoice['status'] === 'paid') {
+    flashMessage('error', 'Invoice #' . $invoice['invoice_number'] . ' cannot be deleted — paid invoices are part of your financial record. Mark it as sent or draft first if you really need to delete it.');
+    redirect($root . '/invoices/view.php?id=' . $id);
+}
+
 // Line items are deleted via ON DELETE CASCADE on the FK
 $pdo->prepare("DELETE FROM lms_invoices WHERE id = ?")->execute([$id]);
 
