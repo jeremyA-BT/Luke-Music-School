@@ -4,6 +4,14 @@ admin/includes/config.php
 # Setup installer — should be deleted after first run
 admin/setup/install.php
 
+# Generated PDFs — never commit invoice documents
+*.pdf
+
+# Deployment artifacts and one-off server scripts — never commit
+admin-upload.zip
+diag.php
+fix-structure.php
+
 # OS / editor
 .DS_Store
 Thumbs.db
