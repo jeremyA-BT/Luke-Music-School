@@ -26,8 +26,8 @@ $stmt2->execute([$id]);
 $invoiceCount = (int) $stmt2->fetchColumn();
 
 if ($invoiceCount > 0) {
-    flashMessage('error', 'Cannot delete "' . $client['name'] . '" — they have ' . $invoiceCount . ' invoice(s) on record.');
-    redirect($root . '/clients/index.php');
+    flashMessage('error', 'Cannot delete "' . $client['name'] . '" — they have ' . $invoiceCount . ' invoice(s) on record. Use Archive instead to hide them from the active client list.');
+    redirect($root . '/clients/edit.php?id=' . $id);
 }
 
 $pdo->prepare("DELETE FROM lms_clients WHERE id = ?")->execute([$id]);

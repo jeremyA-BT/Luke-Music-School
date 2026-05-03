@@ -12,6 +12,8 @@ $root   = getAdminRoot();
 $id     = inputInt('id', 'get');
 $errors = [];
 
+ensureClientArchivedColumn($pdo);
+
 $stmt   = $pdo->prepare("SELECT * FROM lms_clients WHERE id = ?");
 $stmt->execute([$id]);
 $client = $stmt->fetch();
@@ -60,9 +62,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ]);
 
         flashMessage('success', 'Client updated successfully.');
-        redirect($root . '/clients/index.php');
+        redirect($root . '/clients/edit.php?id=' . $id);
     }
 }
+
+$icStmt = $pdo->prepare("SELECT COUNT(*) FROM lms_invoices WHERE client_id = ?");
+$icStmt->execute([$id]);
+$invoiceCount = (int) $icStmt->fetchColumn();
+
+$isArchived = !empty($client['archived_at']);
+
+// Check for active recurring invoices (for archive confirm message)
+$recurCheck = $pdo->prepare("SELECT COUNT(*) FROM lms_invoices WHERE client_id = ? AND status = 'draft' AND recurrence != 'none' AND recurrence != '' AND scheduled_date IS NOT NULL");
+$recurCheck->execute([$id]);
+$hasRecurring = (int) $recurCheck->fetchColumn() > 0;
 
 layoutHeader('Edit Client', 'clients');
 ?>
@@ -71,8 +84,44 @@ layoutHeader('Edit Client', 'clients');
     <div class="alert alert-error"><?= implode('<br>', array_map('e', $errors)) ?></div>
 <?php endif; ?>
 
+<?php if ($isArchived): ?>
+<div class="alert" style="background:#f3f4f6;border:1px solid var(--color-border);color:var(--color-muted);border-radius:var(--radius);padding:12px 16px;margin-bottom:16px;display:flex;gap:10px;align-items:center;">
+    <i class="fa-solid fa-box-archive"></i>
+    <span>This client is <strong>archived</strong> — they are hidden from the active client list and invoice dropdowns.
+        <a href="<?= $root ?>/clients/archive.php?id=<?= $id ?>&action=unarchive&return=<?= urlencode($root . '/clients/edit.php?id=' . $id) ?>"
+           style="color:var(--color-accent);font-weight:600;"
+           onclick="return confirm('Restore <?= e($values['name']) ?> to active clients?')">Restore now</a>
+    </span>
+</div>
+<?php endif; ?>
+
 <div class="card" style="max-width:640px;">
-    <div class="card-header"><h2><?= e($values['name']) ?></h2></div>
+    <div class="card-header">
+        <h2><?= e($values['name']) ?></h2>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <a href="<?= $root ?>/invoices/index.php?client_id=<?= $id ?>"
+               class="btn btn-secondary btn-sm" title="View all invoices for this client">
+                <i class="fa-solid fa-file-invoice"></i>
+                Invoices
+                <?php if ($invoiceCount > 0): ?>
+                    <span style="background:var(--color-accent);color:#fff;border-radius:100px;padding:1px 7px;font-size:.72rem;font-weight:700;"><?= $invoiceCount ?></span>
+                <?php endif; ?>
+            </a>
+            <?php if (!$isArchived): ?>
+            <a href="<?= $root ?>/invoices/create.php?client_id=<?= $id ?>"
+               class="btn btn-primary btn-sm">
+                <i class="fa-solid fa-plus"></i> New Invoice
+            </a>
+            <?php $archiveMsg = 'Archive ' . $values['name'] . '? They will be hidden from the active client list.'
+                . ($hasRecurring ? ' Their recurring invoice schedule will also be cancelled.' : ''); ?>
+            <a href="<?= $root ?>/clients/archive.php?id=<?= $id ?>&action=archive&return=<?= urlencode($root . '/clients/index.php') ?>"
+               class="btn btn-ghost btn-sm"
+               onclick="return confirm(<?= e(json_encode($archiveMsg)) ?>)">
+                <i class="fa-solid fa-box-archive"></i> Archive
+            </a>
+            <?php endif; ?>
+        </div>
+    </div>
     <div class="card-body">
         <form method="POST" action="">
             <?php csrfField(); ?>
@@ -105,7 +154,9 @@ layoutHeader('Edit Client', 'clients');
             </div>
 
             <div class="form-actions" style="margin-top:20px;">
-                <button type="submit" class="btn btn-primary">Save Changes</button>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fa-solid fa-floppy-disk"></i> Save Changes
+                </button>
                 <a href="<?= $root ?>/clients/index.php" class="btn btn-secondary">Cancel</a>
             </div>
         </form>
